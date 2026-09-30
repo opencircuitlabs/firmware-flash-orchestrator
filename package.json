@@ -1,0 +1,12 @@
+{
+  "name": "@opencircuitlabs/firmware-flash-orchestrator",
+  "version": "1.0.0",
+  "description": "Geometry-aware, verified, resumable firmware flash planning and execution",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": "./src/index.js",
+  "bin": { "flash-plan": "src/cli.js" },
+  "scripts": { "test": "node --test", "check": "npm test" },
+  "engines": { "node": ">=18" },
+  "license": "MIT"
+}

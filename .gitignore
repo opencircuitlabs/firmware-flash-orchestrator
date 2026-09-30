@@ -1,0 +1,5 @@
+node_modules/
+coverage/
+plan.json
+report.json
+checkpoint.json

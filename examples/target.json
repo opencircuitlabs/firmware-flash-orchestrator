@@ -1,0 +1,10 @@
+{
+  "name": "Demo Cortex-M flash",
+  "deviceId": "demo-mcu",
+  "baseAddress": 134217728,
+  "size": 262144,
+  "pageSize": 16,
+  "eraseSize": 64,
+  "erasedValue": 255,
+  "protectedRanges": [{ "name": "bootloader", "address": 134479808, "length": 64 }]
+}

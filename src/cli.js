@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+import { readFileSync, writeFileSync } from 'node:fs';
+import { executeFlashPlan, MockFlashAdapter, planFlash } from './index.js';
+const [command,...args]=process.argv.slice(2);const read=(file)=>JSON.parse(readFileSync(file,'utf8'));
+try{if(command==='plan'){const image=read(args[0]);image.segments=image.segments.map(s=>({...s,data:Buffer.from(s.dataHex??s.data)}));const target=read(args[1]);const plan=planFlash(image,target);const text=JSON.stringify(plan,null,2)+'\n';if(args[2])writeFileSync(args[2],text);else process.stdout.write(text);}else if(command==='simulate'){const plan=read(args[0]);const adapter=new MockFlashAdapter(plan.target,{deviceId:plan.target.deviceId});const report=await executeFlashPlan(plan,adapter);const text=JSON.stringify(report,null,2)+'\n';if(args[1])writeFileSync(args[1],text);else process.stdout.write(text);}else throw new Error('Usage: flash-plan plan image.json target.json [plan.json] | simulate plan.json [report.json]');}catch(error){console.error(error.message);process.exitCode=1;}
